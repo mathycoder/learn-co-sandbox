@@ -15,7 +15,8 @@ class RoomScraper
       listings << {
       :time => listing.css("time").text,
       :price => listing.css("a span")[0].text,
-      :title => listing.css("a.result-title.hdrlnk").text
+      :title => listing.css("a.result-title.hdrlnk").text,
+      :url => listing.css("a").attribute("href").value
       }
     end 
     listings 

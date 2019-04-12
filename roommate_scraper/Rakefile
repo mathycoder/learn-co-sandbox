@@ -13,3 +13,7 @@ task :scrape do
   RoomScraper.new().scrape 
   #after this method call, should be able to do Room.all, and have all the rooms be there 
 end 
+
+task :all do 
+  Room.all 
+end 

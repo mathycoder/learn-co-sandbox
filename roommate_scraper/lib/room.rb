@@ -11,12 +11,15 @@ class Room
   
   def self.all
     if @@all == [] 
-      self.scrape_rooms
+      scrape_rooms
     end 
     @@all 
   end 
   
-  def scrape_rooms 
+  def self.scrape_rooms 
+    RoomScraper.new.scrape.each do |attributes_hash|
+      self.new(attributes_hash)
+    end 
   end 
   
 end 

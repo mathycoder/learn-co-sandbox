@@ -10,18 +10,15 @@ class RoomScraper
   end 
   
   def scrape 
-    # time = doc.css(".result-row")[0].css("time").text
-    # price = doc.css(".result-row")[0].css("a span")[0].text
-    # title = doc.css(".result-row")[0].css("a.result-title.hdrlnk").text
-    
+    listings = [] 
     doc.css(".result-row").each do |listing|
-    time = listing.css("time").text
-    price = listing.css("a span")[0].text
-    title = listing.css("a.result-title.hdrlnk").text
-    binding.pry 
+      listings << {
+      :time => listing.css("time").text,
+      :price => listing.css("a span")[0].text,
+      :title => listing.css("a.result-title.hdrlnk").text
+      }
     end 
-    
-    
+    listings 
   end 
   
   

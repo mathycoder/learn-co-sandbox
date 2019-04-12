@@ -1,0 +1,15 @@
+require_relative './config/environment.rb'
+
+def reload!
+  load_all './lib'
+end 
+
+task :console do
+  Pry.start 
+end 
+
+task :scrape_rooms do 
+  #instantiate scraper, and have it find new rooms 
+  RoomScraper.new().update_rooms 
+  #after this method call, should be able to do Room.all, and have all the rooms be there 
+end 

@@ -22,4 +22,17 @@ class Room
     end 
   end 
   
+  def self.create_table 
+    sql = %{
+      CREATE TABLE rooms(
+        id INTEGER PRIMARY KEY, 
+        time TEXT,
+        price TEXT, 
+        title TEXT,
+        url TEXT
+        )
+    }
+    DB[:conn].execute(sql)
+  end 
+  
 end 

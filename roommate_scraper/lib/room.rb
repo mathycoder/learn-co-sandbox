@@ -18,13 +18,14 @@ class Room
   
   def self.scrape_rooms 
     RoomScraper.new.scrape.each do |attributes_hash|
-      self.new(attributes_hash)
+      room = self.new(attributes_hash)
+      room.save 
     end 
   end 
   
   def self.create_table 
     sql = %{
-      CREATE TABLE rooms(
+      CREATE TABLE IF NOT EXISTS rooms(
         id INTEGER PRIMARY KEY, 
         time TEXT,
         price TEXT, 
@@ -33,6 +34,15 @@ class Room
         )
     }
     DB[:conn].execute(sql)
+  end 
+  
+  def save 
+    sql = %{
+      INSERT INTO rooms (time, price, title, url) VALUES 
+      (?, ?, ?, ?)
+    }
+    DB[:conn].execute(sql, self.time, self.price, self.title, self.url)
+  
   end 
   
 end 

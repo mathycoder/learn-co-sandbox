@@ -1,5 +1,5 @@
 class Room 
-  attr_accessor :time, :price, :title, :url 
+  attr_accessor :id, :time, :price, :title, :url 
   @@all = []
   
   def initialize(attributes)
